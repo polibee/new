@@ -33,6 +33,12 @@ class UsersController extends Controller
             'password.confirmed' => '密码不一致',
             'password.min' => '密码最少6个字符',
         ]);
-        return;
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+        ]);
+        session()->flash('success','注册成功');
+        return redirect()->route('users.show',$user);
     }
 }
