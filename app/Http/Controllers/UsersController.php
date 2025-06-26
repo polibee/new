@@ -43,4 +43,5 @@ class UsersController extends Controller
         session()->flash('success','注册成功');
         return redirect()->route('users.show',$user);
     }
+    
 }
