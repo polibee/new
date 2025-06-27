@@ -15,7 +15,7 @@ class UsersController extends BaseController
     use AuthorizesRequests;
     public function __construct()
     {
-        $this->middleware('auth')->except(['show','create','store']);
+        $this->middleware('auth')->except(['show','create','store','index']);
     }
     public function create()
     {
@@ -73,5 +73,10 @@ class UsersController extends BaseController
         $user->update($data);
         session()->flash('success','更新成功');
         return redirect()->route('users.show',$user);
+    }
+    public function index()
+    {
+        $users=User::all();
+        return view('users.index',compact('users'));
     }
 }
